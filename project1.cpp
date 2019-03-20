@@ -4,19 +4,18 @@ private:
     B b;
     C* c;
 public:
+    A (const A& a) {
+        x = a.x;
+        b = a.b;
+        c = new C(*a.c);
+    }
     A& operator= (const  A& a) {
-        if (this == &a) return *this;
-        C* temp_c = nullptr;
-        try {
-            temp_c = new C(*a.c);
-            b = a.b;
-            x = a.x;
+        try{
+            A new_a(a);
+            std::swap(*this, new_a);
         } catch (std::exception& e) {
-            if (temp_c) delete temp_c;
-            return *this;
+            
         }
-        delete c;
-        c = temp_c;
         return *this;
     }
-};
+}
