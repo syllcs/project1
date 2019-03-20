@@ -19,4 +19,4 @@ public:
         c = temp_c;
         return *this;
     }
-}
+};
